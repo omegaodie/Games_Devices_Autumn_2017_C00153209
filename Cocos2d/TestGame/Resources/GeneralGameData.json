@@ -1,0 +1,42 @@
+{
+  "Resources": 
+  {
+      "MainMenu": {
+      "back_file": "MainMenu/p_mainmenu_back.png",
+      "play_button_plist": "MainMenu/plist_main_menu.plist",
+      "play_button_ss":  "MainMenu/plist_main_menu.png",
+      "button_play_1": "MainMenu/p_mainmenu_button_1.png",
+      "button_play_2": "MainMenu/p_mainmenu_button_2.png",
+      "button_exit_1": "MainMenu/p_mainmenu_button_3.png",
+      "button_exit_2": "MainMenu/p_mainmenu_button_4.png",
+      "button_network_1": "MainMenu/p_mainmenu_button_7.png",
+      "button_network_2": "MainMenu/p_mainmenu_button_8.png",
+      "button_options_1": "MainMenu/p_mainmenu_button_5.png",
+      "button_options_2": "MainMenu/p_mainmenu_button_6.png",
+      "button_load_1": "MainMenu/p_mainmenu_button_9.png",
+      "button_load_2": "MainMenu/p_mainmenu_button_10.png"
+    },
+    "PauseMenu": {
+      "back_file": "Pause/p_pause_back.png",
+      "button_resume_1": "Pause/p_pause_resume_1.png",
+      "button_resume_2": "Pause/p_pause_resume_2.png",
+      "button_menu_1": "Pause/p_pause_retry_1.png",
+      "button_menu_2": "Pause/p_pause_retry_2.png",
+      "button_restart_1": "Pause/p_pause_return_1.png",
+      "button_restart_2": "Pause/p_pause_return_2.png"
+    },
+    "Game": {
+      "back_file": "Game/p_game_back.png",
+      "button_pause_1": "Game/p_game_pausebutton_1.png",
+      "button_pause_2": "Game/p_game_pausebutton_2.png",
+      "test_plist": "Game/plist_player_1.plist",
+      "test_ss": "Game/plist_player_1.png",
+      "fireball_1_plist": "Game/ss_fireball_1.plist",
+      "fireball_1_ss": "Game/ss_fireball_1.png",
+      "boss_sheet_1": "Game/ss_boss_1.png",
+      "enemy_sheet_1": "Game/ss_enemy_1.png",
+      "enemy_sheet_2": "Game/ss_enemy_2.png",
+      "player_sheet_1": "Game/ss_player_1.png"
+    }
+  }
+}
