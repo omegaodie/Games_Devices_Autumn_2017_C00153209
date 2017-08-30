@@ -10,6 +10,125 @@
 namespace basic_Types
 {
 	const double PI = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
+	//const basic_Types::Vector2 _wall_hd = basic_Types::Vector2(113, 356);
+	//const basic_Types::Vector2 _wall_sd = basic_Types::Vector2(65, 150);
+	//const basic_Types::Vector2 _wall_shd = basic_Types::Vector2(140, 400);
+
+
+
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	const int wall_sd_x = 65;
+	const int wall_sd_y = 150;
+
+	const int wall_hd_x = 113;
+	const int wall_hd_y = 356;
+
+	const int wall_shd_x = 140;
+	const int wall_shd_y = 400;
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+
+	const int back_sd_x = 4420;
+	const int back_sd_y = 3984;
+
+	const int back_hd_x = 7089;
+	const int back_hd_y = 8000;
+
+	const int back_shd_x = 10675;
+	const int back_shd_y = 9960;
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+
+	const int player_sd_x = 118;
+	const int player_sd_y = 166;
+
+	const int player_hd_x = 118;
+	const int player_hd_y = 166;
+
+	const int player_shd_x = 118;
+	const int player_shd_y = 166;
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+
+	const int zombie_sd_x = 118;
+	const int zombie_sd_y = 166;
+
+	const int zombie_hd_x = 118;
+	const int zombie_hd_y = 166;
+
+	const int zombie_shd_x = 118;
+	const int zombie_shd_y = 166;
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+
+	const int box_sd_x = 123;
+	const int box_sd_y = 128;
+
+	const int box_hd_x = 123;
+	const int box_hd_y = 128;
+
+	const int box_shd_x = 123;
+	const int box_shd_y = 128;
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+
+
+	enum Pattern
+	{
+		SWARM = 0,
+		FLEE = 1,
+		WANDER = 2, 
+		FLOCK = 3, 
+		SEEK = 4 
+	};
+
+	enum player_state {
+		IDLE = 0,
+		MOVING = 1,
+		FIRING = 2,
+		RELOADING = 3
+	};
+
+	enum zombie_state {
+		WALKING = 0,
+		RUNING = 1,
+		HIT = 2,
+		DEAD = 3,
+		ARISE = 4
+	};
+
+	enum _Anim_State {
+		up = 0,
+		down = 1,
+		left = 2,
+		left_up = 3,
+		left_down = 4,
+		right = 5,
+		right_up = 6,
+		right_down = 7,
+	};
+
+	enum _graphics_setting {
+		SD = 0,
+		HD = 1,
+		SHD = 2
+	};
+
+
+	enum _Weights
+	{
+		_PLAYER = 2,
+		_ENEMY_1 = 5,
+		_ENEMY_3 = 8,
+		_ENEMY_4 = 1
+	};
 
 
 	class Vector2 {
@@ -20,6 +139,7 @@ namespace basic_Types
 		float length() const;
 		Vector2 normalise();
 		Vector2 operator+ (const Vector2 & other) const;
+		Vector2 operator+ (const cocos2d::Vec2 & other) const;
 		Vector2 operator- (const Vector2 & other) const;
 		Vector2 operator* (const float & scalar);
 		Vector2 operator/ (const float & scalar);
@@ -30,6 +150,11 @@ namespace basic_Types
 		void limit(float max) { if (length() > max) { *this = normalise() * max; } };
 		float angleBetween(cocos2d::Vec2 v);
 		float angleBetween(Vector2 v);
+		float dotProduct(Vector2 v);
+		float crossProduct(Vector2 v);
+		float component(Vector2 v);
+		Vector2  getInertia(float x, Vector2 position);
+		Vector2  getInertia(float x, cocos2d::Vec2 position);
 	};
 
 

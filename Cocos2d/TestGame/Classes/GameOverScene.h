@@ -7,6 +7,8 @@
 
 class GameOverScene : public cocos2d::Scene
 {
+private:
+	int _retry;
 public:
     static cocos2d::Scene* createScene();
 

@@ -17,12 +17,35 @@ float Vector2::length() const {
 
 Vector2 Vector2::normalise() {
 	float l = length();
-	float xn = x / l;
-	float yn = y / l;
-	return Vector2(xn, yn);
+	if (l > 0) {
+		float xn = x / l;
+		float yn = y / l;
+		return Vector2(xn, yn);
+	}
+	else {
+		return Vector2(0, 0);
+	}
+}
+
+
+Vector2 Vector2::getInertia(float x, Vector2 ov)
+{
+
+	return Vector2((x * 100) * ov.x, (x * 100) * ov.y) / (x * 100);
+}
+
+
+Vector2 Vector2::getInertia(float x, cocos2d::Vec2 ov)
+{
+
+	return Vector2(x * ov.x, y * ov.y) / x;
 }
 
 Vector2 Vector2::operator+ (const Vector2 & other) const {
+	return Vector2(x + other.x, y + other.y);
+}
+
+Vector2 Vector2::operator+ (const cocos2d::Vec2  & other) const {
 	return Vector2(x + other.x, y + other.y);
 }
 
@@ -46,6 +69,24 @@ void Vector2::operator+= (const Vector2 & other) {
 void Vector2::operator-= (const Vector2 & other) {
 	x -= other.x;
 	y -= other.y;
+}
+
+float Vector2::dotProduct(Vector2 v) {
+	float dp = x * v.x + y*v.y;
+	return dp;
+}
+
+float basic_Types::Vector2::crossProduct(Vector2 v)
+{
+	float dp = x * v.x - y*v.y;
+	return dp;
+}
+
+
+float basic_Types::Vector2::component(Vector2 v)
+{
+	float c = dotProduct(v) / length();
+	return c;
 }
 
 void Vector2::operator*= (const float & scalar) {

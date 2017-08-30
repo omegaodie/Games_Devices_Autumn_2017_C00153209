@@ -5,71 +5,73 @@ USING_NS_CC;
 
 Scene* GameOverScene::createScene()
 {
-    return GameOverScene::create();
+	return GameOverScene::create();
 }
 
 // on "init" you need to initialize your instance
 bool GameOverScene::init()
 {
-    //////////////////////////////
-    // 1. super init first
-    if ( !Scene::init() )
-    {
-        return false;
-    }
-    
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	//////////////////////////////
+	// 1. super init first
+	if (!Scene::init())
+	{
+		return false;
+	}
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+	std::shared_ptr<GameData> ptr = GameData::sharedGameData();
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(GameOverScene::menuCloseCallback, this));
-    
-    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+	_retry = ptr->_gameMode;
 
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+	Sprite* _back;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	if (ptr->win) {
+		_back = Sprite::create(ptr->m_over_win);
+		_back->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		this->addChild(_back);
+	}
+	else {
+		_back = Sprite::create(ptr->m_over_loss);
+		_back->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		this->addChild(_back);
+	}
 
-    /////////////////////////////
-    // 3. add your codes below...
+	ptr->win = false;
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    auto label = Label::createWithTTF("Main Menu", "fonts/Marker Felt.ttf", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
 
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+	auto retryItem =
+		MenuItemImage::create(ptr->m_pauseMenu_retry_noclick,
+			ptr->m_pauseMenu_retry_click,
+			CC_CALLBACK_1(GameOverScene::activateGameScene, this));
 
-    // add "GameOverScene" splash screen"
-    auto sprite = Sprite::create("p_menuScreen.png");
+	auto mainMenuItem =
+		MenuItemImage::create(ptr->m_pauseMenu_exittomenu_noclick,
+			ptr->m_pauseMenu_exittomenu_click,
+			CC_CALLBACK_1(GameOverScene::activateMainMenuScene, this));
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	auto menu = Menu::create(retryItem, mainMenuItem, NULL);
 
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-    
-    return true;
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
+
+
+
+	this->addChild(menu);
+
+	return true;
 }
 
 void GameOverScene::activateGameScene(cocos2d::Ref *pSender)
 {
-	auto scene = GameScene::createScene();
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->getEventDispatcher()->removeAllEventListeners();
+	if (_retry == 0) 
+	{
+		auto scene = Tutorial::createScene();
+		Director::getInstance()->replaceScene(scene);
+	}
+	else {
+		auto scene = GameScene::createScene();
+		Director::getInstance()->replaceScene(scene);
+	}
 }
 
 void GameOverScene::activateMainMenuScene(cocos2d::Ref *pSender)
@@ -80,17 +82,17 @@ void GameOverScene::activateMainMenuScene(cocos2d::Ref *pSender)
 
 void GameOverScene::menuCloseCallback(Ref* pSender)
 {
-    //Close the cocos2d-x game scene and quit the application
-    Director::getInstance()->end();
+	//Close the cocos2d-x game scene and quit the application
+	Director::getInstance()->end();
 
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	exit(0);
 #endif
-    
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
-    
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-    
-    
+
+	/*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
+
+	//EventCustom customEndEvent("game_scene_close_event");
+	//_eventDispatcher->dispatchEvent(&customEndEvent);
+
+
 }

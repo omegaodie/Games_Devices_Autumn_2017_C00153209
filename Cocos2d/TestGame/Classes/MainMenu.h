@@ -3,18 +3,33 @@
 
 #include "cocos2d.h"
 #include "GameScene.h"
+#include "NetworkMenu.h"
+#include "LoadGameMenu.h"
+#include "OptionsMenu.h"
+#include "Tutorial.h"
 #include "GameData.h"
 
 
 class MainMenu : public cocos2d::Scene
 {
 private:
-	cocos2d::Animation*  m_animation;
 
-	cocos2d::Vector<cocos2d::SpriteFrame*> m_animFrames;
-	cocos2d::Animate* m_animate;
 
-	float faceScaleX, faceScaleY;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_1;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_2;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_3;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_4;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_5;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_6;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_7;
+	cocos2d::Vector<cocos2d::SpriteFrame*> _face_8;
+	cocos2d::Vector<cocos2d::Animate*> _animates;
+	cocos2d::Vector<cocos2d::Animation*>  _animations;
+
+	cocos2d::Sprite* _back_Sprite;
+
+
+	std::vector<cocos2d::Vec2> _face_pos;
 
 public:
     static cocos2d::Scene* createScene();
@@ -26,17 +41,17 @@ public:
 
 	void activateGameScene(Ref * pSender);
 
-	void MainMenu::addBackGroundSprite(cocos2d::Size const & visibleSize, cocos2d::Point const & origin);
+	void activateTutorial(Ref * pSender);
 
-	void MainMenu::loadNetworkMenu(Ref * pSender);
+	void loadNetworkMenu(Ref * pSender);
 
-	void MainMenu::loadOptionsMenu(Ref * pSender);
+	void loadOptionsMenu(Ref * pSender);
 
-	void MainMenu::loadGameMenu(Ref * pSender);
+	void loadGameMenu(Ref * pSender);
 
 	void playAnimation(int anim);
 
-	//void change(int sceneTo, int Face);
+	void createAssets();
     
     // implement the "static create()" method manually
     CREATE_FUNC(MainMenu);

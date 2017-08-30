@@ -33,7 +33,7 @@ static Resource mediumResource = { cocos2d::Size(1280, 800), "hd" };
 // 1900x1200 = WUXGA, Devices with such as Nexus 7, Nvidia Shield.
 static Resource largeResource = { cocos2d::Size(1920, 1200), "shd" };
 
-static cocos2d::Size designResolutionSize = smallResource.size;
+static cocos2d::Size designResolutionSize = mediumResource.size;
 
 AppDelegate::AppDelegate()
 {
@@ -87,7 +87,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	std::vector<std::string> searchPath;
 
 
-
 	// Create the GameData singleton.
 	m_ptr = GameData::sharedGameData();
 	// Create the level loader object to load general game data.
@@ -103,18 +102,20 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	if (frameSize.height > mediumResource.size.height) {
 		searchPath.push_back(largeResource.directory);
 		scaleFactor = largeResource.size.height / designResolutionSize.height;
+		m_ptr->_resoloution = 2;
 	}
 	// if the frame's height is larger than the height of small resource size, select medium resource.
 	else if (frameSize.height > smallResource.size.height) {
 		searchPath.push_back(mediumResource.directory);
 		scaleFactor = mediumResource.size.height / designResolutionSize.height;
+		m_ptr->_resoloution = 1;
 	}
 	// if the frame's height is smaller than the height of medium resource size, select small resource.
 	else {
 		searchPath.push_back(smallResource.directory);
 		scaleFactor = smallResource.size.height / designResolutionSize.height;
+		m_ptr->_resoloution = 0;
 	}
-
 	director->setContentScaleFactor(scaleFactor);
 	fileUtils->setSearchPaths(searchPath);
 
