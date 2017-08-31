@@ -1,0 +1,138 @@
+{
+    "GeneralMenu": {
+      "src_img": "images/Menu/General/_menu_sprite_atlas",
+      "face_pos":
+        [
+          {
+            "x": 845,
+            "y": 130
+          },
+          {
+          	"x": 952,
+            "y": 262
+          },
+          {
+            "x": 965,
+            "y": 425
+          },
+          {
+            "x": 1160,
+            "y": 132
+          },
+          {
+            "x": 1225,
+            "y": 325
+          },
+          {
+            "x": 1450,
+            "y": 35
+          },
+          {
+            "x": 1360,
+            "y": 207
+          },
+          {
+            "x": 837,
+            "y": 344
+          }
+        ]
+    },
+    "MainMenu": 
+    [
+      "images/Menu/MainMenu/p_mainmenu_button_1.png",
+      "images/Menu/MainMenu/_easier.png",
+      "images/Menu/MainMenu/_harder.png"
+    ],
+    "End": 
+    [
+      "images/Menu/_endOption1.png",
+      "images/Menu/_endOption2.png"
+    ],
+	"Boss_SpriteSheet" : {
+		"t" : "images/m_BossSprite.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 96,
+		"h" : 48
+	},
+	"player_spriteSheet" :{
+		"t" : "images/player.png",
+		"w" : 32,
+		"h" : 32,
+		"directions" : {
+			"spriteSheet_startDown" : 0,
+			"spriteSheet_startLeft" : 32,
+			"spriteSheet_startRight" : 64,
+			"spriteSheet_startUp" : 96
+		}
+	},
+	"Enemy_Image1" :{
+		"t" : "images/EnemyStandard.png",
+		"w" : 32,
+		"h" : 32,
+		"directions" : {
+			"spriteSheet_startDown" : 0,
+			"spriteSheet_startLeft" : 32,
+			"spriteSheet_startRight" : 64,
+			"spriteSheet_startUp" : 96
+		}
+	},
+	"Item_Image1" :{
+		"t" : "images/crate_item.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 128,
+		"h" : 128
+	},
+	"first_room" :{
+		"t" : "images/mm_RoomOne.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 2747,
+		"h" : 719
+	},
+	"second_room" :{
+		"t" : "images/mm_RoomTwo.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 1400,
+		"h" : 3680
+	},
+	"third_room" :{
+		"t" : "images/mm_RoomThree.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 1219,
+		"h" : 1763
+	},
+	"Over_Image" :{
+		"t" : "images/mm_GameOverImage.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 1920,
+		"h" : 1080
+	},
+	"Enemy_Image2" :{
+		"t" : "images/EnemyStandard2.png",
+		"w" : 32,
+		"h" : 32,
+		"directions" : {
+			"spriteSheet_startDown" : 0,
+			"spriteSheet_startLeft" : 32,
+			"spriteSheet_startRight" : 64,
+			"spriteSheet_startUp" : 96
+		}
+	},
+	"mm_GameWonImage" :{
+		"t" : "images/mm_VictoryImage.png",
+		"x" : 0,
+		"y" : 0,
+		"w" : 1124,
+		"h" : 742
+	},
+	"Audio_Files" : {
+		"mm_LvlOneTrack" : "images/mm_LvlOneSong.mp3",
+		"mm_LvlTwoTrack" : "images/mm_LvlTwoSong.mp3",
+		"mm_LvlThreeTrack" : "images/mm_LvlThreeSong.mp3"
+	}
+}

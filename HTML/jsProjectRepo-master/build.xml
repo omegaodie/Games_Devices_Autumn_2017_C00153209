@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<project name="sample">
+
+<target name="simpServer">
+						
+			<path id="jsch.path">
+				<pathelement location="lib/ant-jsch.jar" />
+				<pathelement location="lib/jsch-0.1.50.jar" />
+			</path>
+			<!--This copies your file(s) across-->
+			<taskdef name="scp" classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp" classpathref="jsch.path" />
+			
+						<scp todir="ubuntu@54.68.176.251:/home/ubuntu/"
+						trust="true"
+							keyfile="Pteradactyl.pem"
+							passphrase="">
+			
+			<fileset file="GameServer.py"/>
+
+		</scp>
+			
+			<!--This executes actions on your EC2 instance - in this case runs your server-->
+			<taskdef name="sshexec" classname="org.apache.tools.ant.taskdefs.optional.ssh.SSHExec" classpathref="jsch.path" />
+						
+			<sshexec host="54.68.176.251"
+								username="ubuntu"
+								trust="true"
+								keyfile="Pteradactyl.pem"
+								passphrase=""
+				command="python3 GameServer.py" 
+			
+
+			/>
+
+			
+		</target>
+
+</project>
