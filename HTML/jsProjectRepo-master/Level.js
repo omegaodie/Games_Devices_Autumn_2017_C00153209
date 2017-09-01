@@ -309,62 +309,39 @@ Level.prototype.openDoors = function(){
 
 Level.prototype.EnemyCollisions = function()
 {
-	// var mPie = 3.14159;
-	// for(g = 0; g < this.numEnemy; g++)
-	// {
-	// 	var pX = this.enemies[g].sendPositionX() + 16;
-	// 	var pY = this.enemies[g].sendPositionY() + 16;
-	// 	for(q = 0; q < 4; q++)
-	// 	{
-	// 		if(this.boxDone[q] == false)
-	// 		{
-	// 			if(this.boxes[q].sendMove() != 'none')
-	// 			{
-	// 				var bX = this.boxes[q].sendPositionX() + 64;
-	// 				var bY = this.boxes[q].sendPositionY() + 64;
-	// 				if((pX + 16 >= bX - 64 && pX - 16 <= bX + 64 && pY + 16 >= bY - 64 && pY -16 <= bY + 64)
-	// 				||(pX - 16 <= bX + 64 && pX + 16 >= bX - 64 && pY - 16 <= bY && pY - 16 >= bY - 64))
-	// 				{
-	// 					if(this.CL == 0)
-	// 					{
-	// 						this.boxes[q].Stop();
-	// 					}
-	// 					if(this.CL == 1)
-	// 					{
-	// 						var l_Thetax =  pX - bX;
-	// 						var l_Thetay =  pY - bY;
-	// 						var mTheta = Math.atan2(-l_Thetay, l_Thetax);
-	// 						if (mTheta < 0)
-	// 						{
-	// 							mTheta += 2 * mPie;
-	// 						}
-	// 						mTheta = mTheta * (180 / mPie);
-	// 						if(mTheta >= 45 && mTheta <= 135)
-	// 						{
-	// 							this.boxes[q].setDirect('down');
-	// 							this.boxes[q].setMove(bX, pY + 500);
-	// 						}else if(mTheta >= 136 && mTheta <= 225)
-	// 						{
-	// 							this.boxes[q].setDirect('right');
-	// 							this.boxes[q].setMove(pX + 500, bY);
-	// 						}else if(mTheta >= 226 && mTheta <= 315)
-	// 						{
-	// 							this.boxes[q].setDirect('up');
-	// 							this.boxes[q].setMove(bX, pY - 500);
-	// 						}else
-	// 						{
-	// 							this.boxes[q].setDirect('left');
-	// 							this.boxes[q].setMove(pX - 500, bY);
-	// 						}
-	// 					}
-	// 					if(this.CL == 2)
-	// 					{
-	// 						this.boxes[q].destroy();
-	// 						this.enemyDone[q] = true;
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
+	var mPie = 3.14159;
+	for(g = 0; g < this.numEnemy; g++)
+	{
+		var pX = this.enemies[g].sendPositionX() + 16;
+		var pY = this.enemies[g].sendPositionY() + 16;
+		for(q = 0; q < 4; q++)
+		{
+			if(this.boxDone[q] == false)
+			{
+				if(this.boxes[q].sendMove() != 'none')
+				{
+					var bX = this.boxes[q].sendPositionX() + 64;
+					var bY = this.boxes[q].sendPositionY() + 64;
+					if((pX + 16 >= bX - 64 && pX - 16 <= bX + 64 && pY + 16 >= bY - 64 && pY -16 <= bY + 64)
+					||(pX - 16 <= bX + 64 && pX + 16 >= bX - 64 && pY - 16 <= bY && pY - 16 >= bY - 64))
+					{
+						if(this.CL == 0)
+						{
+							//this.boxes[q].Stop();
+						}
+						if(this.CL == 1)
+						{
+							this.boxes[q].Stop();
+						}
+						if(this.CL == 2)
+						{
+							this.boxes[q].Stop();
+							// this.boxes[q].destroy();
+							// this.enemyDone[q] = true;
+						}
+					}
+				}
+			}
+		}
+	}
 }

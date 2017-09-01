@@ -321,8 +321,8 @@ Enemy.prototype.AIalt = function(e, thisI)
 			_v_cntr.x *= 0.5;
 			_v_cntr.y *= 0.5;
 
-			_v_S.x *= 1.5;
-			_v_S.y *= 1.5;
+			_v_S.x *= 1.75;
+			_v_S.y *= 1.75;
 
 			// _v_A.x *= 0.155;
 			// _v_A.y *= 0.155;
