@@ -13,8 +13,8 @@ function Player(ctx){
 	this.yPos = 350;
 	this.direcTionX = 0;
 	this.direcTionY = 0;
-	this.maxSpeed = 0.15;
-	this.maxForce = 0.03;
+	this.maxSpeed = 5;
+	this.maxForce = 0.3;
 	this.accelerationX = 0;
 	this.accelerationY = 0;
 	this.currentanim = "down";

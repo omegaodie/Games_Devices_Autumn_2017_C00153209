@@ -1,4 +1,4 @@
-var game, cv, lvlLoader, scale_factor_x, scale_factor_y, width, height;
+var game, cv, lvlLoader, scale_factor_x, scale_factor_y, width, height, lastime;
 function Game(canvas){
 	ctx = canvas.getContext('2d');
 	
@@ -11,12 +11,17 @@ function Game(canvas){
 	canvas.onmousewheel = function(event){
 		event.preventDefault();
 	};
-
+    lastime = new Date().getTime();
 }
 
 Game.prototype.gameLoop = function(e){
 	game.scnManager.update(e, ctx);
-    window.setTimeout(window.requestAnimationFrame(game.gameLoop), 1000 / 30);
+    var n = new Date().getTime();
+    if(n - lastime > 2){
+        window.requestAnimationFrame(game.gameLoop);
+        lastime = n;
+    }
+    //window.setTimeout(window.requestAnimationFrame(game.gameLoop), 1000 / 30);
 }
 
 

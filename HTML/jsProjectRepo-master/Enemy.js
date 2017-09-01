@@ -5,8 +5,8 @@ function Enemy(watDo){
 	this.yPos = watDo.Y;
 	this.direcTionX = 0;
 	this.direcTionY = 0;
-	this.maxSpeed = 0.2;
-	this.maxForce = 2;
+	this.maxSpeed = 2;
+	this.maxForce = 0.5;
 	this.accelerationX = 0;
 	this.accelerationY = 0;
 	this.currentanim = "down";
@@ -142,14 +142,14 @@ Enemy.prototype.seek = function(e)
 
 		d_length = Math.sqrt((e.x * e.x) + (e.y  * e.y ));
 
-		e.x / d_length;
-		e.y / d_length;
+		e.x /= d_length;
+		e.y /= d_length;
 
 		e.x *= (this.maxSpeed);
-		e.y  *= (this.maxSpeed);
+		e.y *= (this.maxSpeed);
 
 		e.x  -= (this.direcTionX);
-		e.y   -= (this.direcTionY);
+		e.y  -= (this.direcTionY);
 
 		d_length = Math.sqrt((e.x * e.x) + (e.y * e.y));
 
@@ -173,56 +173,17 @@ Enemy.prototype.applyForce = function(e)
 
 Enemy.prototype.keepInGame = function(e)
 {
-	if(this.keepInGameTimer <= 0)
-	{
-		this.keepInGameTimer = 600;
-
-		//width="1280" height="1080"
-			var x_d = 640 - this.xPos;
-			var y_d = 540 - this.yPos;
-			var _v = this.seek({"x" : x_d, "y" :  y_d});
-			this.applyForce(_v);
-			console.log(_v);
-			this.accelerationX *= 0.6;
-			this.accelerationY *= 0.6;
-			this.direcTionX += (this.accelerationX);
-			this.direcTionY += (this.accelerationY);
-
-
-			var _v_length = Math.sqrt((this.direcTionX * this.direcTionX) + (this.direcTionY * this.direcTionY));
-			this.direcTionX /= _v_length;
-			this.direcTionY /= _v_length;
-
-
-			this.direcTionX *= this.maxSpeed;
-			this.direcTionY *= this.maxSpeed;
-
-			this.accelerationX = 0.0;
-			this.accelerationY = 0.0;
-		// if(e == 1)
-		// {
-		// 	this.direcTionX = 1;
-		// 	this.direcTionY = 0;
-		// 	this.direcTionX *= this.maxSpeed / 2;
-		// }
-		// else if(e == 2)
-		// {
-		// 	this.direcTionX = -1;
-		// 	this.direcTionY = 0;
-		// 	this.direcTionX *= this.maxSpeed / 2;
-		// }
-		// else if(e == 3)
-		// {
-		// 	this.direcTionX = 0;
-		// 	this.direcTionY = 1;
-		// 	this.direcTionY *= this.maxSpeed / 2;
-		// }
-		// else 
-		// {
-		// 	this.direcTionX = 0;
-		// 	this.direcTionY = -1;
-		// 	this.direcTionY *= this.maxSpeed / 2;
-		// }
+	if(this.xPos < 0){
+		this.xPos = width;
+	}
+	if(this.xPos > width){
+		this.xPos = 0;
+	}
+	if(this.yPos < 0){
+		this.yPos = height;
+	}
+	if(this.yPos > height){
+		this.yPos = 0;
 	}
 }
 
@@ -255,8 +216,8 @@ Enemy.prototype.AIalt = function(e, thisI)
 			// }
 
 
-			x_d = 640 - this.xPos;
-			y_d = 540 - this.yPos;
+			x_d = (width / 2) - this.xPos;
+			y_d = (height / 2) - this.yPos;
 			var _v_cntr = this.seek({"x" : x_d, "y" :  y_d});
 
 			var steerX = 0;
@@ -278,8 +239,8 @@ Enemy.prototype.AIalt = function(e, thisI)
 					if (d_length < 150)
 					{
 
-						steerX += (x_d / d_length);
-						steerY += (y_d / d_length);
+						steerX += (x_d / d_length) / d_length;
+						steerY += (x_d / d_length) / d_length;
 						count++;
 					}
 				}
@@ -357,11 +318,11 @@ Enemy.prototype.AIalt = function(e, thisI)
 			_v_b.x *= 1.5;
 			_v_b.y *= 1.5;
 
-			_v_cntr.x *= 0.95;
-			_v_cntr.y *= 0.95;
+			_v_cntr.x *= 0.5;
+			_v_cntr.y *= 0.5;
 
-			_v_S.x *= 2.0;
-			_v_S.y *= 2.0;
+			_v_S.x *= 1.5;
+			_v_S.y *= 1.5;
 
 			// _v_A.x *= 0.155;
 			// _v_A.y *= 0.155;
@@ -371,11 +332,11 @@ Enemy.prototype.AIalt = function(e, thisI)
 
 
 			this.applyForce(_v_cntr);
-			this.applyForce(_v_b);
-			// this.applyForce(_v_p);
-			this.applyForce(_v_S);
-			this.applyForce(_v_A);
-			this.applyForce(_v_C);
+		// 	this.applyForce(_v_b);
+		// 	// this.applyForce(_v_p);
+		 	this.applyForce(_v_S);
+		 	this.applyForce(_v_A);
+		 	this.applyForce(_v_C);
 		}else
 		{
 			this.applyForce(_v_p);
